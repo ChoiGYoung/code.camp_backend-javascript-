@@ -23,12 +23,12 @@ const counterMaker = function () {
 
   if (remaining <= 0) {
     console.log("타이머가 종료되었습니다.");
-    container.style.display = 'none'
+    container.style.display = "none";
     messageContainer.innerHTML = "<h3>타이머가 종료되었습니다.</h3>";
     messageContainer.style.display = "flex";
     return;
   } else if (isNaN(remaining)) {
-    container.style.display = 'none'
+    container.style.display = "none";
     messageContainer.innerHTML = "<h3>유효한 시간대가 아닙니다.</h3>";
     messageContainer.style.display = "flex";
     return;
@@ -54,9 +54,9 @@ const counterMaker = function () {
 const starter = function () {
   container.style.display = "flex";
   messageContainer.style.display = "none";
-  for(let i = 0; i< 100;i++){
-    setTimeout(() => {
-    counterMaker();
-    },1000*i);
-  }
+  counterMaker();
+  setInterval(counterMaker,1000);
+//   for (let i = 0; i < 100; i++) {
+//     setTimeout(counterMaker, 1000 * i);
+//   }
 };
