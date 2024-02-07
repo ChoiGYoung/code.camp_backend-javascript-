@@ -35,16 +35,17 @@ const counterMake = function () {
     remainingSec: Math.floor(remaining) % 60,
   };
 
-
   const documentObj = {
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
     min: document.getElementById("min"),
-    sec: document.getElementById("sec")
-  }
+    sec: document.getElementById("sec"),
+  };
 
-  documentObj['days'].textContent = remainingObj["remainingDate"];
-  documentObj['hours'].textContent = remainingObj["remainingHours"];
-  documentObj['min'].textContent = remainingObj["remainingMin"];
-  documentObj['sec'].textContent = remainingObj["remainingSec"];
+  const timeKeys = Object.keys(remainingObj);
+  const docKeys = Object.keys(documentObj);
+
+  for (let i = 0; i < 10; i = i + 1) {
+    documentObj[docKeys[i]].textContent = remainingObj[timeKeys[i]];
+  }
 };
