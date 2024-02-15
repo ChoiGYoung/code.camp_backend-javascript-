@@ -72,9 +72,14 @@ if (savedTodoList) {
 
 const weatherSearch = function (position) {
      const openWeatherRes = fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${position.latitude}&lon=${position.longitude}&appid=f9ea4b92f947d4e9502de99f890e7b70`
-        );
-    console.log(openWeatherRes)
+        `https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=f9ea4b92f947d4e9502de99f890e7b70`
+        ).then((res) => {
+          return res.json();
+        }).then((json) => {
+          console.log(json.name, json.weather[0].description);
+        }).catch((err) => {
+          console.log(err);
+        })
     }
 
 const accessToGeo = function (position) {
@@ -91,3 +96,4 @@ const askForLocation = function () {
     })
 }
 askForLocation();
+
