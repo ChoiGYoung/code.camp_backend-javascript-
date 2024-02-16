@@ -70,6 +70,21 @@ if (savedTodoList) {
   }
 }
 
+const weatherDataActive = function ({location,weather}) {
+  const weatherMainList = [
+    'Clear',
+    'Clouds',
+    'Drizzle',
+    'Rain',
+    'Snow',
+    'Thunderstorm',
+  ];
+  weather = weatherMainList.includes(weather) ? weather : 'Fog';
+  const locationNameTag = document.querySelector('#location-name-tag')
+  locationNameTag.textContent = location;
+  document.body.style.backgroundImage = `url('./images/${weather}.jpg')`;
+}
+
 const weatherSearch = function ({latitude, longitude}) {
   const openWeatherRes = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=f9ea4b92f947d4e9502de99f890e7b70`
@@ -79,6 +94,11 @@ const weatherSearch = function ({latitude, longitude}) {
     })
     .then((json) => {
       console.log(json.name, json.weather[0].main);
+      const weatherData = {
+        location : json.name,
+        weather : json.weather[0].main
+      }
+      weatherDataActive(weatherData)
     })
     .catch((err) => {
       console.log(err);
